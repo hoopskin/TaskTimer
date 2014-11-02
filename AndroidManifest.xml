@@ -22,6 +22,38 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".InstructionsActivity"
+            android:label="@string/title_activity_instructions" >
+        </activity>
+        <activity
+            android:name=".AddTaskActivity"
+            android:label="@string/title_activity_add_task" >
+        </activity>
+        <activity
+            android:name=".IndivTaskDetailActivity"
+            android:label="@string/title_activity_indiv_task_detail" >
+        </activity>
+        <activity
+            android:name=".OverallTasksSummaryActivity"
+            android:label="@string/title_activity_overall_tasks_summary" >
+        </activity>
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings" >
+        </activity>
+        <activity
+            android:name=".AddTimeTimerActivity"
+            android:label="@string/title_activity_add_time_timer" >
+        </activity>
+        <activity
+            android:name=".AddTimeManualActivity"
+            android:label="@string/title_activity_add_time_manual" >
+        </activity>
+        <activity
+            android:name=".TaskChooserActivity"
+            android:label="@string/title_activity_task_chooser" >
+        </activity>
     </application>
 
 </manifest>

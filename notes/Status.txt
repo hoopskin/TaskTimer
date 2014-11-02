@@ -1,0 +1,7 @@
+11/2
+Created each activity in eclipse
+Wrote down what fields will be in the two tables (Task & Time)
+Created the model for Task and Time
+Worked on SQLiteHelper
+    - onCreate & onUpgrade complete
+    - addTask complete
