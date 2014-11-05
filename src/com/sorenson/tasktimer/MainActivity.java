@@ -10,38 +10,12 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends ActionBarActivity {
-	public final String sharedPrefFileName = "com.sorenson.taskTimer.PREFERENCE_FILE_KEY";
-	public Button saveButton;
-	public Button loadButton;
-	public TextView textView;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		saveButton = (Button)findViewById(R.id.saveButton);
-		loadButton = (Button)findViewById(R.id.loadButton);
-		textView = (TextView)findViewById(R.id.textView1);
-		final SharedPreferences sharedPrefs = getApplicationContext().getSharedPreferences(sharedPrefFileName, 0);
-		final SharedPreferences.Editor editor = sharedPrefs.edit();
 		
-		saveButton.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				editor.putString("myString", "Yay! I can save!");
-				editor.commit();
-			}
-		});
-		
-		loadButton.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				String defValue = sharedPrefs.getString("myString", "N/A");
-				textView.setText(defValue);
-			}
-		});
 	}
 
 	@Override

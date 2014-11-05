@@ -1,6 +1,9 @@
 package com.sorenson.tasktimer.sqlite;
 
+import java.util.List;
+
 import com.sorenson.tasktimer.model.Task;
+import com.sorenson.tasktimer.model.Time;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -34,8 +37,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 		// create tasks table
 		db.execSQL(CREATE_TASKS_TABLE);
 
-		// SQL statement to create times table
-		String CREATE_TIME_TABLE = "CREATE TABLE times ( " +
+		// SQL statement to create timeEntries table
+		String CREATE_TIME_TABLE = "CREATE TABLE timeEntries ( " +
 				"id INTEGER PRIMARY KEY AUTOINCREMENT, " +
 				"taskId INTEGER, " +
 				"date TEXT" +
@@ -43,18 +46,18 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 				"endTime TEXT," +
 				"FOREIGN KEY (taskId) REFERENCES tasks(id))";
 
-		// create times table
+		// create timeEntries table
 		db.execSQL(CREATE_TIME_TABLE);
 	}
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		// TODO Auto-generated method stub
-		// Drop older times and tasks tables if existed
-        db.execSQL("DROP TABLE IF EXISTS times");
+		// Drop older timeEntries and tasks tables if existed
+        db.execSQL("DROP TABLE IF EXISTS timeEntries");
         db.execSQL("DROP TABLE IF EXISTS tasks");
 
-        // create fresh task and times tables
+        // create fresh task and timeEntries tables
         this.onCreate(db);
 	}
 
@@ -102,7 +105,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         db.close();
     }
 
-	public Task getTask(int id) {
+	public Task getTask(String name) {
 		// 1. get reference to readable DB
 		SQLiteDatabase db = this.getReadableDatabase();
 
@@ -110,8 +113,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         Cursor cursor =
         		db.query(TABLE_TASKS, // a. table
         		TASKS_COLUMNS, // b. column names
-        		" id = ?", // c. selections
-                new String[] { String.valueOf(id) }, // d. selections args
+        		" name = ?", // c. selections
+                new String[] { name }, // d. selections args
                 null, // e. group by
                 null, // f. having
                 null, // g. order by
@@ -132,8 +135,12 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 			task.setReduce(false);
 		}
 
-		Log.d(TAG, "getTask("+id+") = " + task.toString());
+		Log.d(TAG, "getTask("+name+") = " + task.toString());
 
 		return task;
+	}
+
+	public List<Time> getAllTimeEntries(String name) {
+		return null;
 	}
 }
