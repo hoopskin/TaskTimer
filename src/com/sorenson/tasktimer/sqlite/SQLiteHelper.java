@@ -41,9 +41,9 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 		String CREATE_TIME_TABLE = "CREATE TABLE timeEntries ( " +
 				"id INTEGER PRIMARY KEY AUTOINCREMENT, " +
 				"taskId INTEGER, " +
-				"date TEXT" +
-				"startTime TEXT" +
-				"endTime TEXT," +
+				"date TEXT" +				//MMDDYYYY
+				"startTime TEXT" +			//HHMMSS
+				"endTime TEXT," +			//HHMMSS
 				"FOREIGN KEY (taskId) REFERENCES tasks(id))";
 
 		// create timeEntries table
@@ -77,6 +77,38 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     private static final String TASKS_KEY_REDUCE = "reduce";
 
     private static final String[] TASKS_COLUMNS = {TASKS_KEY_ID, TASKS_KEY_NAME, TASKS_KEY_GOAL_TIME_SECONDS, TASKS_KEY_REDUCE};
+
+	//Time Entries table name
+	private static final String TABLE_TIME_ENTRIES = "timeEntries";
+
+	//Time Entries Table Columns names
+	private static final String TIME_KEY_ID = "id";
+	private static final String TIME_KEY_TASK_ID = "taskId";
+	private static final String TIME_KEY_DATE = "date";
+	private static final String TIME_KEY_START_TIME = "startTime";
+	private static final String TIME_KEY_END_TIME = "endTime";
+
+	private static final String[] TIME_COLUMNS = {TIME_KEY_END_TIME, TIME_KEY_START_TIME, TIME_KEY_DATE, TIME_KEY_TASK_ID, TIME_KEY_ID};
+
+	public void addTime(Time time) {
+		Log.d(TAG, "Adding time: " + time.toString());
+
+		SQLiteDatabase db = this.getWritableDatabase();
+
+		ContentValues values = new ContentValues();
+
+		values.put(TIME_KEY_ID, time.get());
+		values.put(TIME_KEY_TASK_ID, time.get());
+		values.put(TIME_KEY_END_TIME, time.get());
+		values.put(TIME_KEY_START_TIME, time.get());
+		values.put(TIME_KEY_DATE, time.get());
+
+		db.insert(TABLE_TIME_ENTRIES,
+				null,
+				values);
+
+		db.close();
+	}
 
     public void addTask(Task task) {
     	Log.d(TAG, "Adding task: " + task.toString());

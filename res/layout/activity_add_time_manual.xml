@@ -8,9 +8,49 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.sorenson.tasktimer.AddTimeManualActivity" >
 
-    <TextView
+    <EditText
+        android:id="@+id/dateInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="68dp"
+        android:hint="Date"
+        android:ems="10"
+        android:inputType="date" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/startTimeInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dateInput"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:hint="Start Time"
+        android:ems="10"
+        android:inputType="time" />
+
+    <EditText
+        android:id="@+id/endTimeInput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/startTimeInput"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="49dp"
+        android:hint="End Time"
+        android:ems="10"
+        android:inputType="time" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="49dp"
+        android:text="Add Time" />
 
 </RelativeLayout>

@@ -5,15 +5,15 @@ import java.util.Date;
 public class Time {
 	private int id;
 	private int taskId;
-	private Date timeDate;
+	private Date entryDate;
 	private Date startTime;
 	private Date endTime;
 
 	public Time() {}
 
-	public Time(int taskId, Date timeDate, Date startTime, Date endTime) {
+	public Time(int taskId, Date entryDate, Date startTime, Date endTime) {
 		this.taskId = taskId;
-		this.timeDate = timeDate;
+		this.entryDate = entryDate;
 		this.startTime = startTime;
 		this.endTime = endTime;
 	}
@@ -34,12 +34,12 @@ public class Time {
 		this.taskId = taskId;
 	}
 
-	public Date getTimeDate() {
-		return timeDate;
+	public Date getEntryDate() {
+		return entryDate;
 	}
 
-	public void setTimeDate(Date timeDate) {
-		this.timeDate = timeDate;
+	public void setEntryDate(Date entryDate) {
+		this.entryDate = entryDate;
 	}
 
 	public Date getStartTime() {
@@ -57,11 +57,11 @@ public class Time {
 	public void setEndTime(Date endTime) {
 		this.endTime = endTime;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Time [id="+String.valueOf(id)+", taskId = "+String.valueOf(taskId)+
-				", date="+String.valueOf(timeDate)+
+				", date="+String.valueOf(entryDate)+
 				", startTime = " + String.valueOf(startTime)+
 				", endTime="+String.valueOf(endTime)+"]";
 	}
