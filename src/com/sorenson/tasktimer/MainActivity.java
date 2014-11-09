@@ -1,13 +1,12 @@
 package com.sorenson.tasktimer;
 
 import android.support.v7.app.ActionBarActivity;
-import android.content.SharedPreferences;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 public class MainActivity extends ActionBarActivity {
 	
@@ -15,7 +14,33 @@ public class MainActivity extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		Button addTaskButton = (Button)findViewById(R.id.addTaskButton);
+		Button instructionsButton = (Button)findViewById(R.id.instructionsButton);
+		Button overallStatsButton = (Button)findViewById(R.id.overallStatsButton);
 		
+		addTaskButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				startActivity(new Intent(getApplicationContext(), AddTaskActivity.class));
+			}
+		});
+		
+		instructionsButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				startActivity(new Intent(getApplicationContext(), InstructionsActivity.class));
+			}
+		});
+		
+		overallStatsButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				startActivity(new Intent(getApplicationContext(), OverallTasksSummaryActivity.class));
+			}
+		});
 	}
 
 	@Override

@@ -1,5 +1,8 @@
 package com.sorenson.tasktimer.sqlite;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.LinkedList;
 import java.util.List;
 
 import com.sorenson.tasktimer.model.Task;
@@ -20,6 +23,9 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     // Database Name
     private static final String DATABASE_NAME = "TaskTimerDB";
+    
+    SimpleDateFormat entryDateFormat = new SimpleDateFormat("MMddyyyy");
+	SimpleDateFormat entryTimeFormat = new SimpleDateFormat("hhmmss");
 
 	public SQLiteHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -88,7 +94,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 	private static final String TIME_KEY_START_TIME = "startTime";
 	private static final String TIME_KEY_END_TIME = "endTime";
 
-	private static final String[] TIME_COLUMNS = {TIME_KEY_END_TIME, TIME_KEY_START_TIME, TIME_KEY_DATE, TIME_KEY_TASK_ID, TIME_KEY_ID};
+	private static final String[] TIME_COLUMNS = {TIME_KEY_ID, TIME_KEY_TASK_ID, TIME_KEY_DATE, TIME_KEY_START_TIME, TIME_KEY_END_TIME};
 
 	public void addTime(Time time) {
 		Log.d(TAG, "Adding time: " + time.toString());
@@ -97,11 +103,11 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
 		ContentValues values = new ContentValues();
 
-		values.put(TIME_KEY_ID, time.get());
-		values.put(TIME_KEY_TASK_ID, time.get());
-		values.put(TIME_KEY_END_TIME, time.get());
-		values.put(TIME_KEY_START_TIME, time.get());
-		values.put(TIME_KEY_DATE, time.get());
+		values.put(TIME_KEY_ID, time.getId());
+		values.put(TIME_KEY_TASK_ID, time.getTaskId());
+		values.put(TIME_KEY_END_TIME, entryTimeFormat.format(time.getEndTime()));
+		values.put(TIME_KEY_START_TIME, entryTimeFormat.format(time.getStartTime()));
+		values.put(TIME_KEY_DATE, entryDateFormat.format(time.getEntryDate()));
 
 		db.insert(TABLE_TIME_ENTRIES,
 				null,
@@ -172,7 +178,36 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 		return task;
 	}
 
-	public List<Time> getAllTimeEntries(String name) {
-		return null;
+	public List<Time> getAllTimeEntries(String name) throws ParseException {
+		List<Time> timeEntries = new LinkedList<Time>();
+
+		SQLiteDatabase db = this.getReadableDatabase();
+
+		Cursor cursor =
+				db.query(TABLE_TIME_ENTRIES,
+				TIME_COLUMNS,
+				" taskId = ?",
+				new String[] {String.valueOf(getTask(name).getId())},
+				null,
+				null,
+				null,
+				null);
+
+		
+		Time time = null;
+		if (cursor.moveToFirst()) {
+			do {
+				time = new Time();
+				time.setId(Integer.parseInt(cursor.getString(0)));
+				time.setTaskId(Integer.parseInt(cursor.getString(1)));
+				time.setEntryDate(entryDateFormat.parse(cursor.getString(2)));
+				time.setStartTime(entryTimeFormat.parse(cursor.getString(3)));
+				time.setEndTime(entryTimeFormat.parse(cursor.getString(4)));
+			} while (cursor.moveToFirst());
+		}
+
+		Log.d(TAG, "Time entries for " + name + " are followed: " + timeEntries);
+
+		return timeEntries;
 	}
 }

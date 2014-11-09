@@ -49,7 +49,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/pauseButton"
         android:layout_centerHorizontal="true"
-        android:centerHorizontal="true"
         android:text="Submit" />
 
 </RelativeLayout>
