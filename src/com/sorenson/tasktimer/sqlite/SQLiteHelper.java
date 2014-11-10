@@ -177,6 +177,40 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
 		return task;
 	}
+	
+	public List<Task> searchTasks(String query) {
+		List<Task> tasks = new LinkedList<Task>();
+		
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+ 
+        Task task = null;
+        
+        if (cursor.moveToFirst()) {
+        	do {
+        		task = new Task();
+        		task.setId(Integer.parseInt(cursor.getString(0)));
+        		task.setName(cursor.getString(1));
+        		task.setGoalTimeSeconds(Integer.parseInt(cursor.getString(2)));
+        		if (Integer.parseInt(cursor.getString(3)) == 1) {
+        			task.setReduce(true);
+        		} else {
+        			task.setReduce(false);
+        		}
+        		
+        		tasks.add(task);
+        	} while (cursor.moveToNext()) ;
+        }
+		
+        Log.d(TAG, "Query \"" + query + "\" return the following results: " + tasks.toString());
+        
+		return tasks;
+	}
+	
+	public List<Task> getAllTaskEntries() {
+		String query = "SELECT * FROM " + TABLE_TASKS;
+		return searchTasks(query);
+	}
 
 	public List<Time> getAllTimeEntries(String name) throws ParseException {
 		List<Time> timeEntries = new LinkedList<Time>();
@@ -203,10 +237,12 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 				time.setEntryDate(entryDateFormat.parse(cursor.getString(2)));
 				time.setStartTime(entryTimeFormat.parse(cursor.getString(3)));
 				time.setEndTime(entryTimeFormat.parse(cursor.getString(4)));
+				
+				timeEntries.add(time);
 			} while (cursor.moveToFirst());
 		}
 
-		Log.d(TAG, "Time entries for " + name + " are followed: " + timeEntries);
+		Log.d(TAG, "Time entries for " + name + " are followed: " + timeEntries.toString());
 
 		return timeEntries;
 	}

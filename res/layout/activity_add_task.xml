@@ -8,54 +8,71 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.sorenson.tasktimer.AddTaskActivity" >
 
-    <TextView
-        android:id="@+id/textView1"
+    <EditText
+        android:id="@+id/TaskNameEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="23dp"
+        android:ems="10"
+        android:hint="Task Name" >
+
+        <requestFocus />
+    </EditText>
 
     <NumberPicker
-        android:id="@+id/numberPicker1"
+        android:id="@+id/minuteNumberPicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="56dp" />
+        android:layout_alignLeft="@+id/TaskNameEditText"
+        android:layout_below="@+id/TaskNameEditText"
+        android:layout_marginTop="34dp" />
 
-    <ToggleButton
-        android:id="@+id/toggleButton1"
+    <NumberPicker
+        android:id="@+id/secondsNumberPicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/numberPicker1"
-        android:layout_marginTop="42dp"
-        android:layout_toRightOf="@+id/numberPicker1"
-        android:text="ToggleButton" />
+        android:layout_alignRight="@+id/TaskNameEditText"
+        android:layout_alignTop="@+id/minuteNumberPicker" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/addTaskButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="32dp"
-        android:layout_toRightOf="@+id/numberPicker1"
-        android:text="Button" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/button1"
-        android:layout_toLeftOf="@+id/numberPicker1"
-        android:text="Button" />
+        android:layout_alignRight="@+id/secondsNumberPicker"
+        android:layout_marginBottom="46dp"
+        android:text="Add Task" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/goalToReduceTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/toggleButton1"
-        android:layout_alignBottom="@+id/toggleButton1"
-        android:layout_alignLeft="@+id/textView1"
-        android:text="Medium Text"
+        android:layout_alignLeft="@+id/minuteNumberPicker"
+        android:layout_below="@+id/minuteNumberPicker"
+        android:layout_marginTop="42dp"
+        android:text="Goal To Reduce?"
         android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <ToggleButton
+        android:id="@+id/goalToReduceToggleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/goalToReduceTextView"
+        android:layout_alignBottom="@+id/goalToReduceTextView"
+        android:layout_alignRight="@+id/secondsNumberPicker"
+        android:text="ToggleButton"
+        android:textOff="No"
+        android:textOn="Yes" />
+
+    <Button
+        android:id="@+id/cancelButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/addTaskButton"
+        android:layout_alignBottom="@+id/addTaskButton"
+        android:layout_alignRight="@+id/minuteNumberPicker"
+        android:text="Cancel" />
 
 </RelativeLayout>

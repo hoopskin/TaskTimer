@@ -8,49 +8,34 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.sorenson.tasktimer.AddTimeManualActivity" >
 
-    <EditText
-        android:id="@+id/dateInput"
+    <DatePicker
+        android:id="@+id/datePicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="68dp"
-        android:hint="Date"
-        android:ems="10"
-        android:inputType="date" >
+        android:calendarViewShown="false" />
 
-        <requestFocus />
-    </EditText>
-
-    <EditText
-        android:id="@+id/startTimeInput"
+    <TimePicker
+        android:id="@+id/startTimePicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/dateInput"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:hint="Start Time"
-        android:ems="10"
-        android:inputType="time" />
+        android:layout_below="@+id/datePicker"
+        android:layout_centerHorizontal="true" />
 
-    <EditText
-        android:id="@+id/endTimeInput"
+    <TimePicker
+        android:id="@+id/endTimePicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/startTimeInput"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="49dp"
-        android:hint="End Time"
-        android:ems="10"
-        android:inputType="time" />
+        android:layout_below="@+id/startTimePicker"
+        android:layout_centerHorizontal="true" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/addTimeEntryButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="49dp"
-        android:text="Add Time" />
+        android:text="Add Time Entry" />
 
 </RelativeLayout>
