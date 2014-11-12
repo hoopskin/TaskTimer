@@ -23,7 +23,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     // Database Name
     private static final String DATABASE_NAME = "TaskTimerDB";
-    
+
     SimpleDateFormat entryDateFormat = new SimpleDateFormat("MMddyyyy");
 	SimpleDateFormat entryTimeFormat = new SimpleDateFormat("hhmmss");
 
@@ -82,7 +82,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     private static final String TASKS_KEY_GOAL_TIME_SECONDS = "goalTimeSeconds";
     private static final String TASKS_KEY_REDUCE = "reduce";
 
-    private static final String[] TASKS_COLUMNS = {TASKS_KEY_ID, TASKS_KEY_NAME, TASKS_KEY_GOAL_TIME_SECONDS, TASKS_KEY_REDUCE};
+    private static final String[] TASKS_COLUMNS = {TASKS_KEY_NAME, TASKS_KEY_GOAL_TIME_SECONDS, TASKS_KEY_REDUCE};
 
 	//Time Entries table name
 	private static final String TABLE_TIME_ENTRIES = "timeEntries";
@@ -94,7 +94,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 	private static final String TIME_KEY_START_TIME = "startTime";
 	private static final String TIME_KEY_END_TIME = "endTime";
 
-	private static final String[] TIME_COLUMNS = {TIME_KEY_ID, TIME_KEY_TASK_ID, TIME_KEY_DATE, TIME_KEY_START_TIME, TIME_KEY_END_TIME};
+	private static final String[] TIME_COLUMNS = {TIME_KEY_TASK_ID, TIME_KEY_DATE, TIME_KEY_START_TIME, TIME_KEY_END_TIME};
 
 	public void addTime(Time time) {
 		Log.d(TAG, "Adding time: " + time.toString());
@@ -103,7 +103,6 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
 		ContentValues values = new ContentValues();
 
-		values.put(TIME_KEY_ID, time.getId());
 		values.put(TIME_KEY_TASK_ID, time.getTaskId());
 		values.put(TIME_KEY_END_TIME, entryTimeFormat.format(time.getEndTime()));
 		values.put(TIME_KEY_START_TIME, entryTimeFormat.format(time.getStartTime()));
@@ -124,7 +123,6 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
 		// 2. create ContentValues to add key "column"/value
         ContentValues values = new ContentValues();
-		values.put(TASKS_KEY_ID, task.getId());
 		values.put(TASKS_KEY_NAME, task.getName());
 		values.put(TASKS_KEY_GOAL_TIME_SECONDS, task.getGoalTimeSeconds());
 
@@ -177,15 +175,15 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
 		return task;
 	}
-	
+
 	public List<Task> searchTasks(String query) {
 		List<Task> tasks = new LinkedList<Task>();
-		
+
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
- 
+
         Task task = null;
-        
+
         if (cursor.moveToFirst()) {
         	do {
         		task = new Task();
@@ -197,16 +195,16 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         		} else {
         			task.setReduce(false);
         		}
-        		
+
         		tasks.add(task);
         	} while (cursor.moveToNext()) ;
         }
-		
+
         Log.d(TAG, "Query \"" + query + "\" return the following results: " + tasks.toString());
-        
+
 		return tasks;
 	}
-	
+
 	public List<Task> getAllTaskEntries() {
 		String query = "SELECT * FROM " + TABLE_TASKS;
 		return searchTasks(query);
@@ -227,7 +225,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 				null,
 				null);
 
-		
+
 		Time time = null;
 		if (cursor.moveToFirst()) {
 			do {
@@ -237,7 +235,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 				time.setEntryDate(entryDateFormat.parse(cursor.getString(2)));
 				time.setStartTime(entryTimeFormat.parse(cursor.getString(3)));
 				time.setEndTime(entryTimeFormat.parse(cursor.getString(4)));
-				
+
 				timeEntries.add(time);
 			} while (cursor.moveToFirst());
 		}

@@ -1,5 +1,7 @@
 package com.sorenson.tasktimer;
 
+import com.sorenson.tasktimer.sqlite.SQLiteHelper;
+
 import android.support.v7.app.ActionBarActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,9 +16,26 @@ public class MainActivity extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		Button addTaskButton = (Button)findViewById(R.id.addTaskButton);
+		Button addTaskButton = (Button)findViewById(R.id.goToAddTaskButton);
 		Button instructionsButton = (Button)findViewById(R.id.instructionsButton);
 		Button overallStatsButton = (Button)findViewById(R.id.overallStatsButton);
+		Button addTimeTimer = (Button)findViewById(R.id.addTimeTimerButton);
+		Button addTimeManual = (Button)findViewById(R.id.addTimeManualButton);
+		
+		addTimeTimer.setOnClickListener(new View.OnClickListener() {	
+			@Override
+			public void onClick(View v) {
+				startActivity(new Intent(getApplicationContext(), AddTimeTimerActivity.class));
+			}
+		});
+		
+		addTimeManual.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				startActivity(new Intent(getApplicationContext(), AddTimeManualActivity.class));
+			}
+		});
 		
 		addTaskButton.setOnClickListener(new View.OnClickListener() {
 			

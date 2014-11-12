@@ -35,6 +35,12 @@ public class AddTaskActivity extends ActionBarActivity {
 		goalToReduceToggleButton = (ToggleButton)findViewById(R.id.goalToReduceToggleButton);
 		db = new SQLiteHelper(this);
 		
+		minuteNumberPicker.setMinValue(0);
+		minuteNumberPicker.setMaxValue(999);
+		
+		secondsNumberPicker.setMinValue(0);
+		secondsNumberPicker.setMaxValue(59);
+		
 		addTaskButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
