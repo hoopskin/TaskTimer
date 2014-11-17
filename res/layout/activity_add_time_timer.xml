@@ -28,7 +28,7 @@
         android:textSize="32sp" />
 
     <Button
-        android:id="@+id/pauseButton"
+        android:id="@+id/stopButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/startButton"
@@ -47,7 +47,7 @@
         android:id="@+id/submitButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/pauseButton"
+        android:layout_below="@+id/stopButton"
         android:layout_centerHorizontal="true"
         android:text="Submit" />
 

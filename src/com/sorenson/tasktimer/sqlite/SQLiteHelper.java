@@ -47,9 +47,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 		String CREATE_TIME_TABLE = "CREATE TABLE timeEntries ( " +
 				"id INTEGER PRIMARY KEY AUTOINCREMENT, " +
 				"taskId INTEGER, " +
-				"date TEXT" +				//MMDDYYYY
-				"startTime TEXT" +			//HHMMSS
-				"endTime TEXT," +			//HHMMSS
+				"date TEXT," +				//MMDDYYYY
+				"seconds INTEGER," +
 				"FOREIGN KEY (taskId) REFERENCES tasks(id))";
 
 		// create timeEntries table
@@ -91,10 +90,9 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 	private static final String TIME_KEY_ID = "id";
 	private static final String TIME_KEY_TASK_ID = "taskId";
 	private static final String TIME_KEY_DATE = "date";
-	private static final String TIME_KEY_START_TIME = "startTime";
-	private static final String TIME_KEY_END_TIME = "endTime";
+	private static final String TIME_KEY_SECONDS = "seconds";
 
-	private static final String[] TIME_COLUMNS = {TIME_KEY_TASK_ID, TIME_KEY_DATE, TIME_KEY_START_TIME, TIME_KEY_END_TIME};
+	private static final String[] TIME_COLUMNS = {TIME_KEY_TASK_ID, TIME_KEY_DATE, TIME_KEY_SECONDS};
 
 	public void addTime(Time time) {
 		Log.d(TAG, "Adding time: " + time.toString());
@@ -104,8 +102,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 		ContentValues values = new ContentValues();
 
 		values.put(TIME_KEY_TASK_ID, time.getTaskId());
-		values.put(TIME_KEY_END_TIME, entryTimeFormat.format(time.getEndTime()));
-		values.put(TIME_KEY_START_TIME, entryTimeFormat.format(time.getStartTime()));
+		values.put(TIME_KEY_SECONDS, time.getSeconds());
 		values.put(TIME_KEY_DATE, entryDateFormat.format(time.getEntryDate()));
 
 		db.insert(TABLE_TIME_ENTRIES,
@@ -233,8 +230,7 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 				time.setId(Integer.parseInt(cursor.getString(0)));
 				time.setTaskId(Integer.parseInt(cursor.getString(1)));
 				time.setEntryDate(entryDateFormat.parse(cursor.getString(2)));
-				time.setStartTime(entryTimeFormat.parse(cursor.getString(3)));
-				time.setEndTime(entryTimeFormat.parse(cursor.getString(4)));
+				time.setSeconds(Integer.parseInt(cursor.getString(3)));
 
 				timeEntries.add(time);
 			} while (cursor.moveToFirst());

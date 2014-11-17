@@ -22,6 +22,11 @@ public class MainActivity extends ActionBarActivity {
 		Button addTimeTimer = (Button)findViewById(R.id.addTimeTimerButton);
 		Button addTimeManual = (Button)findViewById(R.id.addTimeManualButton);
 		
+		/* Uncomment this section to clear out the database
+		SQLiteHelper db = new SQLiteHelper(this);
+		db.onUpgrade(db.getWritableDatabase(), 1, 2);
+		*/
+		
 		addTimeTimer.setOnClickListener(new View.OnClickListener() {	
 			@Override
 			public void onClick(View v) {

@@ -1,21 +1,21 @@
 package com.sorenson.tasktimer.model;
 
 import java.util.Date;
+import java.text.SimpleDateFormat;
 
 public class Time {
 	private int id;
 	private int taskId;
 	private Date entryDate;
-	private Date startTime;
-	private Date endTime;
+	private int seconds;
+	SimpleDateFormat entryDateFormat = new SimpleDateFormat("MMddyyyy");
 
 	public Time() {}
 
-	public Time(int taskId, Date entryDate, Date startTime, Date endTime) {
+	public Time(int taskId, Date entryDate, int seconds) {
 		this.taskId = taskId;
 		this.entryDate = entryDate;
-		this.startTime = startTime;
-		this.endTime = endTime;
+		this.seconds = seconds;
 	}
 
 	public int getId() {
@@ -42,27 +42,18 @@ public class Time {
 		this.entryDate = entryDate;
 	}
 
-	public Date getStartTime() {
-		return startTime;
+	public int getSeconds() {
+		return seconds;
 	}
 
-	public void setStartTime(Date startTime) {
-		this.startTime = startTime;
-	}
-
-	public Date getEndTime() {
-		return endTime;
-	}
-
-	public void setEndTime(Date endTime) {
-		this.endTime = endTime;
+	public void setSeconds(int seconds) {
+		this.seconds = seconds;
 	}
 
 	@Override
 	public String toString() {
 		return "Time [id="+String.valueOf(id)+", taskId = "+String.valueOf(taskId)+
 				", date="+String.valueOf(entryDate)+
-				", startTime = " + String.valueOf(startTime)+
-				", endTime="+String.valueOf(endTime)+"]";
+				", seconds = " + String.valueOf(seconds)+"]";
 	}
 }

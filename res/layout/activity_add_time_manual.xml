@@ -8,27 +8,20 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.sorenson.tasktimer.AddTimeManualActivity" >
 
-    <DatePicker
-        android:id="@+id/datePicker"
+    <NumberPicker
+        android:id="@+id/manualSecondsNumberPicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:calendarViewShown="false" />
+        android:layout_alignRight="@+id/datePicker"
+        android:layout_alignTop="@+id/manualMinuteNumberPicker" />
 
-    <TimePicker
-        android:id="@+id/startTimePicker"
+    <NumberPicker
+        android:id="@+id/manualMinuteNumberPicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/datePicker"
         android:layout_below="@+id/datePicker"
-        android:layout_centerHorizontal="true" />
-
-    <TimePicker
-        android:id="@+id/endTimePicker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/startTimePicker"
-        android:layout_centerHorizontal="true" />
+        android:layout_marginTop="40dp" />
 
     <Button
         android:id="@+id/addTimeEntryButton"
@@ -36,6 +29,25 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="21dp"
         android:text="Add Time Entry" />
+
+    <DatePicker
+        android:id="@+id/datePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/addTimeManualTaskNameText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:calendarViewShown="false" />
+
+    <TextView
+        android:id="@+id/addTimeManualTaskNameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="18dp"
+        android:text="TextView" />
 
 </RelativeLayout>
