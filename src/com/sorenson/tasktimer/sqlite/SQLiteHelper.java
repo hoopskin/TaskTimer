@@ -82,7 +82,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     private static final String TASKS_KEY_REDUCE = "reduce";
 
     private static final String[] TASKS_COLUMNS = {TASKS_KEY_NAME, TASKS_KEY_GOAL_TIME_SECONDS, TASKS_KEY_REDUCE};
-
+    private static final String[] TASKS_COLUMNS_WITH_ID = {TASKS_KEY_ID, TASKS_KEY_NAME, TASKS_KEY_GOAL_TIME_SECONDS, TASKS_KEY_REDUCE};
+    
 	//Time Entries table name
 	private static final String TABLE_TIME_ENTRIES = "timeEntries";
 
@@ -93,7 +94,8 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 	private static final String TIME_KEY_SECONDS = "seconds";
 
 	private static final String[] TIME_COLUMNS = {TIME_KEY_TASK_ID, TIME_KEY_DATE, TIME_KEY_SECONDS};
-
+	private static final String[] TIME_COLUMNS_WITH_ID = {TIME_KEY_ID, TIME_KEY_TASK_ID, TIME_KEY_DATE, TIME_KEY_SECONDS};
+	
 	public void addTime(Time time) {
 		Log.d(TAG, "Adding time: " + time.toString());
 
@@ -140,12 +142,13 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
 	public Task getTask(String name) {
 		// 1. get reference to readable DB
+		Log.d(TAG, "Getting task with name " + name);
 		SQLiteDatabase db = this.getReadableDatabase();
 
 		// 2. build query
         Cursor cursor =
         		db.query(TABLE_TASKS, // a. table
-        		TASKS_COLUMNS, // b. column names
+        		TASKS_COLUMNS_WITH_ID, // b. column names
         		" name = ?", // c. selections
                 new String[] { name }, // d. selections args
                 null, // e. group by
@@ -155,8 +158,14 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 
         // 3. if we got results get the first one
         if (cursor != null) {
+        	Log.d(TAG, "not null");
 			cursor.moveToFirst();
-		}
+		} else {Log.d(TAG, "null");}
+        Log.d(TAG, "Count="+String.valueOf(cursor.getColumnCount()));
+        Log.d(TAG, cursor.getString(0));
+        Log.d(TAG, cursor.getString(1));
+        Log.d(TAG, cursor.getString(2));
+        Log.d(TAG, cursor.getString(3));
 
 		Task task = new Task();
 		task.setId(Integer.parseInt(cursor.getString(0)));
@@ -208,15 +217,19 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 	}
 
 	public List<Time> getAllTimeEntries(String name) throws ParseException {
+		Log.d(TAG, "Getting all time entries for " + name);
+		
 		List<Time> timeEntries = new LinkedList<Time>();
-
+		
 		SQLiteDatabase db = this.getReadableDatabase();
-
+		int taskId = getTask(name).getId();
+		Log.d(TAG, "About to get time entries for task with id = " + String.valueOf(taskId));
+		
 		Cursor cursor =
 				db.query(TABLE_TIME_ENTRIES,
 				TIME_COLUMNS,
 				" taskId = ?",
-				new String[] {String.valueOf(getTask(name).getId())},
+				new String[] {String.valueOf(taskId)},
 				null,
 				null,
 				null,
@@ -227,13 +240,16 @@ public class SQLiteHelper extends SQLiteOpenHelper {
 		if (cursor.moveToFirst()) {
 			do {
 				time = new Time();
-				time.setId(Integer.parseInt(cursor.getString(0)));
-				time.setTaskId(Integer.parseInt(cursor.getString(1)));
-				time.setEntryDate(entryDateFormat.parse(cursor.getString(2)));
-				time.setSeconds(Integer.parseInt(cursor.getString(3)));
+				//time.setId(Integer.parseInt(cursor.getString(0)));
+				//time.setTaskId(Integer.parseInt(cursor.getString(1)));
+				//time.setEntryDate(entryDateFormat.parse(cursor.getString(2)));
+				//time.setSeconds(Integer.parseInt(cursor.getString(3)));
+				time.setTaskId(Integer.parseInt(cursor.getString(0)));
+				time.setEntryDate(entryDateFormat.parse(cursor.getString(1)));
+				time.setSeconds(Integer.parseInt(cursor.getString(2)));
 
 				timeEntries.add(time);
-			} while (cursor.moveToFirst());
+			} while (cursor.moveToNext());
 		}
 
 		Log.d(TAG, "Time entries for " + name + " are followed: " + timeEntries.toString());

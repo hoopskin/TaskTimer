@@ -1098,13 +1098,13 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f060016;
         public static final int action_menu_presenter=0x7f060017;
         public static final int action_mode_close_button=0x7f060024;
-        public static final int action_settings=0x7f060052;
+        public static final int action_settings=0x7f060054;
         public static final int activity_chooser_view_content=0x7f060025;
         public static final int addTaskButton=0x7f06003f;
         public static final int addTimeEntryButton=0x7f060046;
-        public static final int addTimeManualButton=0x7f06004f;
+        public static final int addTimeManualButton=0x7f060050;
         public static final int addTimeManualTaskNameText=0x7f060047;
-        public static final int addTimeTimerButton=0x7f06004e;
+        public static final int addTimeTimerButton=0x7f06004f;
         public static final int always=0x7f06000b;
         public static final int beginning=0x7f060011;
         public static final int cancelButton=0x7f060042;
@@ -1120,7 +1120,7 @@ containing a value of this type.
         public static final int end=0x7f060013;
         public static final int expand_activities_button=0x7f060026;
         public static final int expanded_menu=0x7f06002c;
-        public static final int goToAddTaskButton=0x7f06004d;
+        public static final int goToAddTaskButton=0x7f06004e;
         public static final int goalToReduceTextView=0x7f060040;
         public static final int goalToReduceToggleButton=0x7f060041;
         public static final int home=0x7f060014;
@@ -1128,7 +1128,9 @@ containing a value of this type.
         public static final int icon=0x7f06002a;
         public static final int ifRoom=0x7f06000a;
         public static final int image=0x7f060027;
-        public static final int instructionsButton=0x7f060051;
+        public static final int instructionsButton=0x7f060052;
+        public static final int linearLayout=0x7f06004d;
+        public static final int linearLayout2=0x7f060053;
         public static final int listMode=0x7f060001;
         public static final int list_item=0x7f060029;
         public static final int manualMinuteNumberPicker=0x7f060045;
@@ -1138,7 +1140,7 @@ containing a value of this type.
         public static final int never=0x7f060009;
         public static final int none=0x7f060010;
         public static final int normal=0x7f060000;
-        public static final int overallStatsButton=0x7f060050;
+        public static final int overallStatsButton=0x7f060051;
         public static final int progress_circular=0x7f060018;
         public static final int progress_horizontal=0x7f060019;
         public static final int radio=0x7f06002f;

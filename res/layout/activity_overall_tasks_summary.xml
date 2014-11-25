@@ -7,10 +7,15 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.sorenson.tasktimer.OverallTasksSummaryActivity" >
-
-    <TextView
+    
+    <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:scrollbars="vertical" >
 
+    </LinearLayout>
+    
 </RelativeLayout>
