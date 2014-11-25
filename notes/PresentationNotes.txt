@@ -1,0 +1,41 @@
+TaskTimer Presentation
+
+
+Presentation Overview
+
+Project Overview
+ - Goal (30 second pitch)
+ - Tools used?
+ - GitHub URL
+Task and Time Models
+ - two boxes with attributes
+SQLiteHelper
+ - Overview of methods
+Task Chooser
+ - Showcase code and a screenshot
+ - Called from other parts in code
+ - Returns task name and ID
+Add Time Timer
+ - What to put in onCreate vs. onActivityResult
+ - First calls Task Chooser
+ - Handler
+    - Show code of handler being called and self-calling
+    - Show stopPressed boolean
+ - Off by 1 error
+Add Time Manual
+ - Calling Task Chooser again
+    - onCreate vs. onActivityResult again
+ - Wonky UI
+ - DatePicker and TimePicker not working out the best on small screen
+ - How date was collected
+Add Task
+
+GraphView
+
+
+Issues I ran into
+ - Autoincrement
+ - Determining columns to have
+ - ListView
+ - UI Problems (Add Time Manual)
+ - Timer

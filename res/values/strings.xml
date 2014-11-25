@@ -11,5 +11,6 @@
     <string name="title_activity_add_time_timer">AddTimeTimerActivity</string>
     <string name="title_activity_add_time_manual">AddTimeManualActivity</string>
     <string name="title_activity_task_chooser">TaskChooserActivity</string>
+    <string name="title_activity_delete_item">DeleteItemActivity</string>
 
 </resources>

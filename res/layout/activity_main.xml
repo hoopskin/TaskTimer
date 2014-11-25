@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/goToAddTaskButton"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="23dp"
+        android:layout_marginTop="36dp"
         android:text="Add Time (Timer)" />
 
     <Button
@@ -42,25 +42,16 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/addTimeTimerButton"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="23dp"
+        android:layout_marginTop="43dp"
         android:text="Add Time (Manual)" />
 
     <Button
-        android:id="@+id/overallStatsButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/instructionsButton"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:text="Overall Statistics" />
-
-    <Button
-        android:id="@+id/instructionsButton"
+        android:id="@+id/indivTaskStatsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/addTimeManualButton"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="22dp"
-        android:text="Instructions" />
+        android:layout_marginTop="33dp"
+        android:text="Individual Task Statistics" />
 
 </RelativeLayout>

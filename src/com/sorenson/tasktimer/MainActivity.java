@@ -17,12 +17,11 @@ public class MainActivity extends ActionBarActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		Button addTaskButton = (Button)findViewById(R.id.goToAddTaskButton);
-		Button instructionsButton = (Button)findViewById(R.id.instructionsButton);
-		Button overallStatsButton = (Button)findViewById(R.id.overallStatsButton);
+		Button indivTaskStatsButton = (Button)findViewById(R.id.indivTaskStatsButton);
 		Button addTimeTimer = (Button)findViewById(R.id.addTimeTimerButton);
 		Button addTimeManual = (Button)findViewById(R.id.addTimeManualButton);
 		
-		/* Uncomment this section to clear out the database
+		/* //Uncomment this section to clear out the database
 		SQLiteHelper db = new SQLiteHelper(this);
 		db.onUpgrade(db.getWritableDatabase(), 1, 2);
 		*/
@@ -50,19 +49,10 @@ public class MainActivity extends ActionBarActivity {
 			}
 		});
 		
-		instructionsButton.setOnClickListener(new View.OnClickListener() {
+		indivTaskStatsButton.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
-				startActivity(new Intent(getApplicationContext(), InstructionsActivity.class));
-			}
-		});
-		
-		overallStatsButton.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				//startActivity(new Intent(getApplicationContext(), OverallTasksSummaryActivity.class));
 				startActivity(new Intent(getApplicationContext(), IndivTaskDetailActivity.class));
 			}
 		});

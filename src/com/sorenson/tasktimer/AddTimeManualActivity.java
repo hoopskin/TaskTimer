@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.NumberPicker;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class AddTimeManualActivity extends ActionBarActivity {
 	NumberPicker minuteNumberPicker;
@@ -23,8 +24,8 @@ public class AddTimeManualActivity extends ActionBarActivity {
 	DatePicker datePicker;
 	Button submitButton;
 	TextView taskNameText;
+	String taskName;
 	int taskId;
-	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -48,10 +49,17 @@ public class AddTimeManualActivity extends ActionBarActivity {
 			@Override
 			public void onClick(View v) {
 				Time timeEntry = new Time();
+				int seconds = (minuteNumberPicker.getValue()*60)+(secondsNumberPicker.getValue());
 				timeEntry.setEntryDate(getDateFromDatePicker());
-				timeEntry.setSeconds((minuteNumberPicker.getValue()*60)+(secondsNumberPicker.getValue()));
+				timeEntry.setSeconds(seconds);
 				timeEntry.setTaskId(taskId);
 				db.addTime(timeEntry);
+				
+				Toast.makeText(getApplicationContext(), 
+						"Time Entry for " + taskName + " created at " + String.valueOf(seconds) + " seconds", 
+						Toast.LENGTH_SHORT).show();
+				
+				finish();
 			}
 		});
 		
@@ -75,10 +83,10 @@ public class AddTimeManualActivity extends ActionBarActivity {
 		super.onActivityResult(requestCode, resultCode, data);
 		
 		if (requestCode == 2) {
-			String taskName = data.getStringExtra("taskName");
+			taskName = data.getStringExtra("taskName");
 			taskId = data.getIntExtra("taskId", -1);
-			taskNameText = (TextView)findViewById(R.id.addTimeManualTaskNameText);
-			taskNameText.setText(taskName);
+			//taskNameText = (TextView)findViewById(R.id.addTimeManualTaskNameText);
+			//taskNameText.setText(taskName);
 		}
 		
 	}
